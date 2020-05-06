@@ -1,0 +1,174 @@
+// 1. Variable swap ////////////////////////////////////
+// Destructuring assignment
+let a = { name: "Tung", age: 23 };
+let b = { name: "Ngoc", age: 23 };
+console.log(a, b);
+
+// Perform swapping
+[a, b] = [b, a];
+console.log(a, b);
+
+// Temporary variable
+let a = [1, 2];
+let b = [3, 4];
+let temp;
+console.log(a, b);
+
+// Perform swapping
+temp = a;
+a = b;
+b = temp;
+console.log(a, b);
+
+// Addition and difference
+let a = 1;
+let b = -2;
+console.log(a, b);
+
+// Perform swapping
+a = a + b;
+b = a - b;
+a = a - b;
+console.log(a, b);
+
+// Bitwise XOR operator
+let a = 1,
+  b = 2;
+console.log(a, b);
+
+// Perform swapping
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+console.log(a, b);
+
+// 2. Split String into Array ////////////////////////////
+const str = "Hello beauty there";
+const arr = str.split(" ");
+console.log(arr);
+
+// 3. The spread operator ///////////////////////////////////
+const a = [4, 5, 7, -8];
+console.log(...a);
+console.log(a);
+const b = { name: "Tung", age: 23 };
+console.log({ ...b });
+console.log(b);
+const c = "Tung Ngoc";
+console.log(...c);
+console.log(c);
+
+// 4. Clothes Shop /////////////////////////////////////////
+let listItems = ["Jeans", "T-Shirt", "Socks"];
+let loop = true;
+
+while (loop) {
+  let inputUser = prompt(
+    "Hi there, welcome to shop admin panel, what do you want (C, R, U, D)?"
+  ).toLowerCase();
+
+  if (inputUser === "e") {
+    alert("This command is not supported");
+    break;
+  } else if (inputUser === "r") {
+    console.log("The current items are:");
+    for (let i = 0; i < listItems.length; i++) {
+      console.log(`${i + 1}. ${listItems[i]}`);
+    }
+  } else if (inputUser === "c") {
+    let c = prompt("Enter the name of the new item");
+    listItems.push(c);
+    alert("Done");
+  } else if (inputUser === "u") {
+    let u = Number(prompt("Enter the position you want to update")) - 1;
+    let value = prompt("Enter the new name");
+    listItems[u] = value;
+    alert("Done");
+  } else if (inputUser === "d") {
+    let d = Number(prompt("Enter the position you want to delete")) - 1;
+    listItems.splice(d, 1);
+    alert("Done");
+  }
+}
+
+// 5. Calculate the sum of the numbers ////////////////////////
+let userInput = prompt("Enter a sequence of Number, separated by commas (,)");
+let arr = userInput.split(",");
+let sum = 0;
+for (let i = 0; i < arr.length; i++) {
+  sum += Number(arr[i]);
+}
+alert(`The sum of them is ${sum}`);
+
+// 6. Find the smallest number /////////////////////////////////
+let userInput = prompt('Enter a sequence of Number, separated by commas ","');
+let arr = userInput.split(",");
+let min = +Infinity;
+for (let i = 0; i < arr.length; i++) {
+  if (Number(arr[i]) < min) {
+    min = Number(arr[i]);
+  }
+}
+alert(`The smallest number is: ${min}`);
+
+// 7. Look for the number in the array ////////////////////
+const arr = [3, 4, 6, -9, 10, -88, 2];
+let userInput = Number(prompt("Enter a number"));
+if (arr.indexOf(userInput) !== -1) {
+  alert(`${userInput} is FOUND in my array at index ${arr.indexOf(userInput)}`);
+} else {
+  alert(`${userInput} is NOT found in my array`);
+}
+
+// 8 ///////////////////////////////////////////////////////
+// 8.1 /////////////////////////////////////////////////////
+let mySheepSizes = [5, 7, 300, 90, 24, 50, 75];
+console.log("Hello, my name is Tung Pham and here is my sheep sizes:");
+console.log(...mySheepSizes);
+
+//8.5 //////////////////////////////////////////////////////
+
+for (let i = 1; i <= 4; i++) {
+  // 8.2
+  let myBiggestSheep = Math.max(...mySheepSizes);
+  console.log(
+    `Now my biggest sheep has size ${myBiggestSheep}, let's shave it.`
+  );
+
+  // 8.3
+  mySheepSizes[mySheepSizes.indexOf(myBiggestSheep)] = 8;
+  console.log(`After shearing, hear is my flock:`);
+  console.log(...mySheepSizes);
+
+  // 8.4
+  mySheepSizes = mySheepSizes.map((sheep) => sheep + 50);
+  console.log(`MONTH ${i}`);
+  console.log(
+    `One month has, passed, my sheeps have grown, here are their sizes:`
+  );
+  console.log(...mySheepSizes);
+}
+
+// 8.6
+let total = 0;
+for (let i = 0; i < mySheepSizes.length; i++) {
+  total += mySheepSizes[i];
+}
+console.log(`My flock has size in total: ${total}`);
+console.log(`I would get ${total} * 25 = ${total * 25}`);
+
+// 9 ////////////////////////////////////////////////////////
+// Em không vào được trang https://turtle.mindx.edu.vn/
+
+// 10 ///////////////////////////////////////////////////////
+let userInput = prompt("Enter a sequence of names");
+let arr = userInput.split(",");
+let newArr = arr.map((name) => `<${name}>`);
+
+alert(`${userInput} => ${newArr}`);
+
+// 11 //////////////////////////////////////////////////////
+let userInput = prompt("Enter a sequence numbers");
+let arr = userInput.split(",");
+let odd = arr.filter((num) => num % 2 !== 0);
+alert(`${userInput} => ${odd}`);
