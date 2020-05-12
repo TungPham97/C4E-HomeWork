@@ -1,0 +1,201 @@
+// 1. Nhập vào 1 dãy số, mỗi số ngăn cách nhau bởi dấy ','
+// a. Số lớn thứ 2 trong dãy
+// b. Số bé thứ 2 trong dãy
+
+let userInput = prompt("Enter a sequence numbers: ");
+let arr = userInput.split(",");
+console.log(arr);
+let copyArr = arr.slice();
+
+// Sorted array
+for (let i = copyArr.length; i > 0; i--) {
+  let noSwap = true;
+  for (let j = 0; j < i - 1; j++) {
+    if (Number(copyArr[j]) < Number(copyArr[j + 1])) {
+      [copyArr[j], copyArr[j + 1]] = [copyArr[j + 1], copyArr[j]];
+      noSwap = false;
+    }
+  }
+  if (noSwap) break;
+}
+console.log(copyArr);
+
+console.log(`Số lớn thứ 2 trong dãy: ${copyArr[1]}`);
+console.log(`Số bé thứ 2 trong dãy: ${copyArr[copyArr.length - 2]}`);
+
+// c. Vị trí các số nguyên tố có trong dãy
+// Find prime
+function isPrime(num) {
+  if (num < 2) {
+    return false;
+  } else if (num === 2) {
+    return true;
+  } else if (num % 2 === 0) {
+    return false;
+  }
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+
+let primeNumIdx = [];
+
+for (let i = 0; i < arr.length; i++) {
+  // Solution 1: Not use function
+  // let loop = true;
+
+  // if (Number(arr[i]) < 2) {
+  //   continue;
+  // }
+  // if (Number(arr[i]) === 2) {
+  //   primeNumIdx.push(i);
+  //   continue;
+  // }
+  // if (Number(arr[i]) > 2 && Number(arr[i]) % 2 === 0) {
+  //   continue;
+  // }
+  // for (let j = 3; j <= Math.sqrt(Number(arr[i])); j += 2) {
+  //   if (Number(arr[i]) % j === 0) {
+  //     loop = false;
+  //     break;
+  //   }
+  // }
+
+  // if (loop) {
+  //   primeNumIdx.push(i);
+  // }
+
+  // Use function
+  if (isPrime(Number(arr[i]))) {
+    primeNumIdx.push(i);
+  }
+}
+
+if (primeNumIdx.length === 0) {
+  console.log("Không có số nguyên tố nào trong dãy");
+  alert("NOT FOUND");
+} else {
+  console.log(`Vị trí các số nguyên tố có trong dãy: ${[...primeNumIdx]}`);
+}
+
+// d. Phần tử trung vị của dãy
+let median;
+if (copyArr.length % 2 !== 0) {
+  median = copyArr[Math.floor(copyArr.length / 2)];
+} else {
+  median =
+    (Number(copyArr[copyArr.length / 2 - 1]) +
+      Number(copyArr[copyArr.length / 2])) /
+    2;
+}
+
+console.log(`Phần tử trung vị của dãy: ${median}`);
+
+// e. Các cặp số có tổng bằng 5 trong dãy
+let sumEqual5 = false;
+
+for (let i = 0; i < arr.length; i++) {
+  for (j = i + 1; j < arr.length; j++) {
+    if (Number(arr[i]) + Number(arr[j]) === 5) {
+      console.log(`(${Number(arr[i])}, ${Number(arr[j])})`);
+      sumEqual5 = true;
+      break;
+    }
+  }
+}
+
+if (!sumEqual5) {
+  console.log("Khong co cap so nao co tong bang 5");
+  alert("NOT FOUND");
+}
+
+// 2. Nhập vào 1 dãy các chuỗi (string), mỗi string cách nhau bởi dấu ','.
+// Tìm trong dãy đó những string đối xứng, in ra ra vị trí các string đó.
+// let arrStr = ["adadda", "bfdf", "etdhte"];
+let strInput = prompt("Enter a sequence str");
+let arrStr = strInput.split(",");
+console.log(arrStr);
+let idx = [];
+
+for (let i = 0; i < arrStr.length; i++) {
+  let dx = true;
+  for (let j = 0; j < Math.floor(arrStr[i].length / 2); j++) {
+    if (arrStr[i][j] !== arrStr[i][arrStr[i].length - j - 1]) {
+      dx = false;
+      break;
+    }
+  }
+  if (dx) {
+    idx.push(i);
+  }
+}
+
+if (idx.length > 0) {
+  console.log(`Vị trí các str đối xứng: ${[...idx]}`);
+} else {
+  console.log("NOT FOUND");
+}
+
+// 3. Mảng 2 chiều
+let matrix = [
+  [-9, 8, 7],
+  [6, 5, 4],
+  [3, 2, -1],
+];
+for (let i = 0; i < matrix.length; i++) {
+  console.log(...matrix[i]);
+}
+
+// b. Tính tổng từng hàng của ma trận
+for (let i = 0; i < matrix.length; i++) {
+  let sum = 0;
+  for (let j = 0; j < matrix[i].length; j++) {
+    sum += matrix[i][j];
+  }
+  console.log(`Tổng hàng ${i}: ${sum}`);
+}
+
+// c. Tính tổng từng cột của ma trận
+for (let i = 0; i < matrix.length; i++) {
+  let sumCol = 0;
+  for (let j = 0; j < matrix.length; j++) {
+    sumCol += matrix[j][i];
+  }
+  console.log(`Tổng cột ${i}: ${sumCol}`);
+}
+
+// d. Tính 2 đường chéo của ma trận vuông
+let duongCheo_1 = 0;
+let duongCheo_2 = 0;
+for (let i = 0; i < matrix.length; i++) {
+  duongCheo_1 += matrix[i][i];
+  duongCheo_2 += matrix[i][matrix.length - 1 - i];
+}
+console.log(`Tổng đường chéo chính: ${duongCheo_1}`);
+console.log(`Tổng đường chéo phụ: ${duongCheo_2}`);
+
+// e. Tìm số nhỏ nhất, lớn nhất trong ma trận
+let min, max;
+let newArr = [];
+for (let i = 0; i < matrix.length; i++) {
+  newArr.push(...matrix[i]);
+}
+console.log(newArr);
+console.log(`Số lớn nhất trong ma trận: ${Math.max(...newArr)}`);
+console.log(`Số nhỏ nhất trong ma trận: ${Math.min(...newArr)}`);
+
+// f. Tính tổng các số dương/ âm trong ma trận
+let posNum = 0,
+  negNum = 0;
+
+for (let i = 0; i < newArr.length; i++) {
+  if (newArr[i] < 0) {
+    negNum += newArr[i];
+  } else {
+    posNum += newArr[i];
+  }
+}
+
+console.log(`Tổng các số dương: ${posNum}`);
+console.log(`Tổng các số âm: ${negNum}`);
